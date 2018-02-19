@@ -12,4 +12,12 @@ var Word = function(word) {
   this.showWord = function() {
     return this.letterArray.join(' ');
   };
+
+  this.check = function(char) {
+    for (var i = 0; i < this.letterArray.length; i++) {
+      this.letterArray[i].guess(char);
+    }
+  };
 };
+
+module.exports = Word;

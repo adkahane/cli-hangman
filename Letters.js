@@ -1,3 +1,4 @@
+
 // Constructor function that takes in a letter and constructs a letter object
 var Letter = function(letter) {
   // The underlying letter of the object
@@ -15,9 +16,10 @@ var Letter = function(letter) {
   };
 
   // Check to see if the letter has been guessed correctly
-  this.check = function(char) {
+  this.guess = function(char) {
     if (char.toLowerCase() === this.letter) {
       this.guessed = true;
+      return true;
     }
   };
 };
