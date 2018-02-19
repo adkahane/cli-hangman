@@ -1,16 +1,6 @@
+
+var game = require("./game.js");
 var inquirer = require("inquirer");
-var fs = require("fs");
-var gameWord = "";
+var chalk = require("chalk");
 
-randomWord();
-// inquirer.prompt()
-
-// Returns a random word from the wordbank.txt file.
-function randomWord() {
-  fs.readFile("./wordBank.txt", "utf8", function(err, data) {
-    wordArr = data.split(",");
-    gameWord = (wordArr[Math.floor(Math.random() * wordArr.length)]);
-  });
-  console.log(gameWord);
-
-}
+var newGame = new game();

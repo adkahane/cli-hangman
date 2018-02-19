@@ -5,7 +5,7 @@ var Letter = function(letter) {
   // Has this letter been guessed by the user?
   this.guessed = false;
   // if the letter has been guessed display the letter.  If not, display a "_"
-  this.reveal = function(guessed) {
+  this.toString = function(guessed) {
     if (this.guessed === true) {
       return (this.letter);
     }
