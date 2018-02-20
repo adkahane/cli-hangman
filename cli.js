@@ -6,42 +6,55 @@ var log = console.log;
 // Number of guesses left
 var guessLeft = 10;
 var playerGuess;
-var playGame = true;
+var playGame;
 
-var newGame = new game();
-newGame.startGame();
-  // while (guessLeft > 0) {
-    chalk.blue(newGame.wordProgress());
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "char",
-        message: "What Letter will you choose?"
-      }
-    ]).
-    then(function(answers) {
-      console.log(answers.char);
-      playerGuess = newGame.checkGuess(answers.char);
-      if (playerGuess === false) {
-        guessLeft--;
-        console.log(guessLeft);
-      }
-      else {
-        log.blue("Good Guess!");
-      }
-    });
-    // newGame.wordProgress();
-    log.yellow("You have " + guessLeft + "guesses left.\n");
+// Game recursion loop
+function hereWeGo() {
+  var newGame = new game();
+  newGame.startGame();
+  console.log("\nMystery Word:");
+  console.log(newGame.wordProgress() + "\n");
+  if (guessLeft > 0){
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "guess",
+      message: "What Letter will you choose?"
+    }])
+  .then(function(answers) {
+    console.log(answers.guess);
+    playerGuess = newGame.checkGuess(answers.guess);
+    if (playerGuess === false) {
+      guessLeft--;
+      newGame.wordProgress();
+      console.log("You have " + guessLeft + " guesses left.\n");
 
-  // }
-
+    }
+    else {
+      console.log("Good Guess!");
+      newGame.wordProgress();
+    }
+  });
+}
+}
+// After losing, ask the player if they want to play again
+if (guessLeft === 0) {
   inquirer.prompt([
     {
       type: "confirm",
       name: "playAgain",
-      message: log(chalk.blue("Would you like to play again?"))
+      message: "Would you like to play again?"
     }
   ]).
   then(function(answers) {
     playGame = answers.playAgain;
+    if (playGame === true) {
+      hereWeGo();
+    }
+    else {
+      console.log("Goodbye");
+    }
   });
+}
+
+hereWeGo();

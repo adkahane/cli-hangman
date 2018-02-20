@@ -9,7 +9,7 @@ var game = function() {
     this.newWord = new Word(this.gameWord);
   };
   this.wordProgress = function() {
-    console.log(this.newWord.showWord());
+    return this.newWord.showWord();
   };
   this.checkGuess = function(guess) {
     found = this.newWord.check(guess);
