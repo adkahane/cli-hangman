@@ -4,9 +4,12 @@ var Letter = require("./Letters.js");
 var Word = function(word) {
   // Array of letter objects
   this.letterArray = [];
+  this.stringArray = [];
+  this.guessArray = [];
   for (var i = 0; i < word.length; i++) {
     var newLetter = new Letter(word[i]);
     this.letterArray.push(newLetter);
+    this.stringArray.push(word[i]);
   }
   // Returns a string to game of letters or dashes, based on whether a letter has been guessed yet
   this.showWord = function() {
@@ -16,6 +19,12 @@ var Word = function(word) {
   this.check = function(char) {
     for (var i = 0; i < this.letterArray.length; i++) {
       this.letterArray[i].guess(char);
+    }
+    if (this.stringArray.indexOf(char) === -1) {
+      return false;
+    }
+    else {
+      return true;
     }
   };
 };

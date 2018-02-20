@@ -1,15 +1,48 @@
 
 var game = require("./game.js");
 var inquirer = require("inquirer");
-const chalk = require("chalk");
-const log = console.log;
-// Number of wrong guesses
-var wrong = 0;
+var chalk = require("chalk");
+var log = console.log;
+// Number of guesses left
+var guessLeft = 10;
+var playerGuess;
+var playGame = true;
 
-// while (wrong < 10) {
+while (playGame === true) {
   var newGame = new game();
   newGame.startGame();
-  newGame.wordProgress();
-  newGame.checkGuess("o");
-  newGame.wordProgress();
-// }
+  while (guessLeft > 0) {
+    chalk.blue(newGame.wordProgress());
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "char",
+        message: "What Letter will you choose?"
+      }
+    ]).
+    then(function(answers) {
+      log(chalk.red(answers.char));
+      playerGuess = newGame.checkGuess(answers.char);
+      if (playerGuess === false) {
+        guessLeft--;
+      }
+      else {
+        log.blue("Good Guess!");
+      }
+    });
+    // newGame.wordProgress();
+    log.yellow("You have " + guessLeft + "guesses left.\n");
+
+  }
+
+  inquirer.prompt([
+    {
+      type: "confirm",
+      name: "playAgain",
+      message: log(chalk.blue("Would you like to play again?"))
+    }
+  ]).
+  then(function(answers) {
+    playGame = answers.playAgain;
+  });
+ }
