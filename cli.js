@@ -8,10 +8,13 @@ var guessLeft = 10;
 var playerGuess;
 var playGame;
 
-// Game recursion loop
 function hereWeGo() {
-  var newGame = new game();
-  newGame.startGame();
+var newGame = new game();
+newGame.startGame();
+rounds();
+
+// Game recursion loop
+function rounds() {
   console.log("\nMystery Word:");
   console.log(newGame.wordProgress() + "\n");
   if (guessLeft > 0){
@@ -22,19 +25,20 @@ function hereWeGo() {
       message: "What Letter will you choose?"
     }])
   .then(function(answers) {
-    console.log(answers.guess);
     playerGuess = newGame.checkGuess(answers.guess);
     if (playerGuess === false) {
       guessLeft--;
-      newGame.wordProgress();
+      console.log(newGame.wordProgress());
       console.log("You have " + guessLeft + " guesses left.\n");
-
+      rounds();
     }
     else {
       console.log("Good Guess!");
-      newGame.wordProgress();
+      console.log(newGame.wordProgress());
+      rounds();
     }
   });
+}
 }
 }
 // After losing, ask the player if they want to play again
