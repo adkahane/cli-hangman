@@ -8,10 +8,9 @@ var guessLeft = 10;
 var playerGuess;
 var playGame = true;
 
-while (playGame === true) {
-  var newGame = new game();
-  newGame.startGame();
-  while (guessLeft > 0) {
+var newGame = new game();
+newGame.startGame();
+  // while (guessLeft > 0) {
     chalk.blue(newGame.wordProgress());
     inquirer.prompt([
       {
@@ -21,10 +20,11 @@ while (playGame === true) {
       }
     ]).
     then(function(answers) {
-      log(chalk.red(answers.char));
+      console.log(answers.char);
       playerGuess = newGame.checkGuess(answers.char);
       if (playerGuess === false) {
         guessLeft--;
+        console.log(guessLeft);
       }
       else {
         log.blue("Good Guess!");
@@ -33,7 +33,7 @@ while (playGame === true) {
     // newGame.wordProgress();
     log.yellow("You have " + guessLeft + "guesses left.\n");
 
-  }
+  // }
 
   inquirer.prompt([
     {
@@ -45,4 +45,3 @@ while (playGame === true) {
   then(function(answers) {
     playGame = answers.playAgain;
   });
- }
