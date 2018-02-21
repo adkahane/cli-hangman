@@ -5,7 +5,6 @@ var Word = function(word) {
   // Array of letter objects
   this.letterArray = [];
   this.stringArray = [];
-  this.guessArray = [];
   for (var i = 0; i < word.length; i++) {
     var newLetter = new Letter(word[i]);
     this.letterArray.push(newLetter);

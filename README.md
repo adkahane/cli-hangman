@@ -6,6 +6,7 @@ A command line game of Hangman for your enjoyment
 Type `npm install` to install:
   * inquirer
   * chalk
+  * clear
 
 ## Rules
 1. The user will be shown an array of '_' characters, representing the letters of a mystery word.
