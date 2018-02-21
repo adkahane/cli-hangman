@@ -23,7 +23,7 @@ function hereWeGo() {
     clear();
     log(chalk.white("\n----------------") + chalk.red.bold("\nCLI MYSTERY WORD\n") + chalk.white("----------------\n\nGuess this Word Dude!\n"));
     console.log("You have " + chalk.red.bold(guessLeft) + " guesses left!\n");
-    console.log(newGame.wordProgress() + "\n");
+    console.log(newGame.wordProgress() + "\n\n");
     if (guessLeft > 0){
       inquirer.prompt([
         {
@@ -72,7 +72,7 @@ function hereWeGo() {
         else {
           if (newGame.wordProgress().replace(/\s+/g, '') === newGame.gameWord) {
             clear();
-            log(chalk.bgRed.yellow.bold("\n           YOU WIN           \n"))
+            log(chalk.bgRed.yellow.bold("\n           YOU WIN           \n"));
             console.log("The word was " + chalk.cyan.bold(newGame.wordProgress()) + " !\n");
             inquirer.prompt([
               {
