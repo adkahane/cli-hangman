@@ -1,6 +1,6 @@
 
 var Word = require("./word.js");
-var wordArray = ["donatello","michaelangelo","leonardo","raphael","splinter","shredder","krang","bebop", "rocksteady", "rahzar", "tokka"];
+var wordArray = ["donatello","michaelangelo","leonardo","raphael","splinter","april","foot","shredder","krang","bebop", "rocksteady", "rahzar", "tokka"];
 var found;
 // Constructor function for a new game. Contains all the different phases of the game
 var game = function() {
