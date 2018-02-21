@@ -7,9 +7,9 @@ var clear = require("clear");
 var log = console.log;
 var playerGuess;
 var playGame;
-var guessArray = [];
 // Get a new game going
 function hereWeGo() {
+  var guessArray = [];
   // Number of guesses left
   var guessLeft = 10;
   // New instance of game object
@@ -31,14 +31,15 @@ function hereWeGo() {
           name: "guess",
           message: chalk.green("What Letter will you choose?"),
           validate: function(value) {
-            if (isNaN(value) === false || value.length > 1 || guessArray.indexOf(value) === true) {
+            if (isNaN(value) === false || value.length > 1 || guessArray.indexOf(value) != -1) {
+              console.log(chalk.red.bold("\n\nINVALID INPUT!\n"));
               return false;
             }
+            guessArray.push(value);
             return true;
           }
         }])
       .then(function(answers) {
-        guessArray.push(answers.guess);
         playerGuess = newGame.checkGuess(answers.guess);
         if (playerGuess === false) {
           guessLeft--;
