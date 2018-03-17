@@ -15,3 +15,5 @@ Type `npm install` to install:
 3. If the user's guess matches a letter in the mystery word, that/those letters will be revealed.
 4. If the user's guess does not match any letters in the word, their guesses left decrease by 1.
 5. Users get 10 guesses to uncover the mystery word and win the game!
+
+![gif of hangman action](readmegif.png)
